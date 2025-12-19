@@ -52,4 +52,10 @@ public class MainScreenControllerr {
         theModel.addAttribute("productkeyword",productkeyword);
         return "mainscreen";
     }
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "aboutPage";   // looks for aboutPage.html in templates
+        }
+
+
 }
