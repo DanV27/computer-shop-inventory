@@ -15,4 +15,19 @@ line 55, I added new class to
 return"aboutPage"
 
 ### Part-E
+In BootStrapData.java, I updated the run()
+method (lines 55–75) to load sample 
+inventory only when both the Parts and Products 
+tables are empty, ensuring existing data is not 
+overwritten. 
+
+I added the loadSampleParts() method
+(90–150) to create five PC parts using 
+InhousePart/OutsourcedPart, and used a Set
+(95–100) to prevent duplicate parts from being added.
+If a duplicate name was detected in the loop
+(120–135), it was converted into a “multi-pack” 
+part appending “(Multi-Pack)” to the name.
+I also added the loadSampleProducts() method (lines 190–215)
+to create/save five PC products.
 
