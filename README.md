@@ -25,9 +25,17 @@ I added the loadSampleParts() method
 (90–150) to create five PC parts using 
 InhousePart/OutsourcedPart, and used a Set
 (95–100) to prevent duplicate parts from being added.
-If a duplicate name was detected in the loop
+If a duplicate name was in the loop
 (120–135), it was converted into a “multi-pack” 
 part appending “(Multi-Pack)” to the name.
 I also added the loadSampleProducts() method (lines 190–215)
 to create/save five PC products.
 
+### Part-F
+Updated mainscreen.html with a button to buy products
+(lines 87-89).
+Updated AddProductController with a new function to buy
+products, will put user into a success page
+if product was bought if not a failure page.
+(lines 177-193).
+Added new Failure/Success.html pages!
