@@ -74,20 +74,57 @@ public class AddProductController {
 //        product.getParts().addAll(assparts);
         else {
             ProductService repo = context.getBean(ProductServiceImpl.class);
-            if(product.getId()!=0) {
+
+            if (product.getId() != 0) {
                 Product product2 = repo.findById((int) product.getId());
                 PartService partService1 = context.getBean(PartServiceImpl.class);
-                if(product.getInv()- product2.getInv()>0) {
+
+                int delta = product.getInv() - product2.getInv();
+
+                // Only reduce part inventory when product inventory INCREASES
+                if (delta > 0) {
+
+                    // 1) validate first: parts cannot drop below minInv
                     for (Part p : product2.getParts()) {
-                        int inv = p.getInv();
-                        p.setInv(inv - (product.getInv() - product2.getInv()));
+                        int newInv = p.getInv() - delta;
+
+                        if (newInv < p.getMinInv()) {
+                            bindingResult.reject(
+                                    "lowPartInventory",
+                                    "Cannot increase product inventory: '" + p.getName()
+                                            + "' would drop below its minimum (" + p.getMinInv() + ")."
+                            );
+                            break;
+                        }
+                    }
+
+                    // 2) if error, reload form data and return to productForm
+                    if (bindingResult.hasErrors()) {
+                        theModel.addAttribute("parts", partService.findAll());
+
+                        List<Part> availParts = new ArrayList<>();
+                        for (Part p : partService.findAll()) {
+                            if (!product2.getParts().contains(p)) availParts.add(p);
+                        }
+
+                        theModel.addAttribute("availparts", availParts);
+                        theModel.addAttribute("assparts", product2.getParts());
+                        theModel.addAttribute("product", product);
+
+                        return "productForm";
+                    }
+
+                    // 3) safe: apply the decrease and save
+                    for (Part p : product2.getParts()) {
+                        p.setInv(p.getInv() - delta);
                         partService1.save(p);
                     }
                 }
-            }
-            else{
+            } else {
+
                 product.setInv(0);
             }
+
             repo.save(product);
             return "confirmationaddproduct";
         }

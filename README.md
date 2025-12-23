@@ -56,3 +56,10 @@ Created files ValidInvRange.java and InvRangeValidator.java
 to make a custom validation rules for min/max inventory.
 Added "@ValidInvRange" in part.java (line 21)
 
+### Part-H
+Low/High inventory validation was added in 
+InvRangeValidator (lines 11-47)
+
+Product inventory validation against part minimums
+in productForm.html(lines30-51 )
+and AddProductController.java(Lines 75-127)

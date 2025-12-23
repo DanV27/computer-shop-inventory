@@ -16,8 +16,34 @@ public class InvRangeValidator
         int max = part.getMaxInv();
         int inv = part.getInv();
 
-        if (min > max) return false;
+        //custom messages
+        context.disableDefaultConstraintViolation();
 
-        return inv >= min && inv <= max;
+        //min must be <= Max
+        if (min > max) {
+            context.buildConstraintViolationWithTemplate("Min Inventory cannot be greater than Max Inventory.")
+                    .addPropertyNode("minInv")
+                    .addConstraintViolation();
+            return false;
+        }
+
+        // inv too low
+        if (inv < min) {
+            context.buildConstraintViolationWithTemplate("Inventory is below the minimum allowed (" + min + ").")
+                    .addPropertyNode("inv")
+                    .addConstraintViolation();
+            return false;
+        }
+
+        // inv too  high
+        if (inv > max) {
+            context.buildConstraintViolationWithTemplate("Inventory exceeds the maximum allowed (" + max + ").")
+                    .addPropertyNode("inv")
+                    .addConstraintViolation();
+            return false;
+        }
+
+        return true;
     }
+
 }
