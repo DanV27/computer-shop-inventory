@@ -67,3 +67,7 @@ and AddProductController.java(Lines 75-127)
 ### Part-I 
 Added two new Test to PartTest.java and its validator for max/min.
 (Lines 10-17, 35-49, 180-220).
+
+### Part-J
+Removed unused validator classes.
+

@@ -21,7 +21,7 @@ public class InvRangeValidator
 
         //min must be <= Max
         if (min > max) {
-            context.buildConstraintViolationWithTemplate("Min Inventory cannot be greater than Max Inventory.")
+            context.buildConstraintViolationWithTemplate("Min Inventory cannot be > Max Inventory.")
                     .addPropertyNode("minInv")
                     .addConstraintViolation();
             return false;
@@ -34,7 +34,6 @@ public class InvRangeValidator
                     .addConstraintViolation();
             return false;
         }
-
         // inv too  high
         if (inv > max) {
             context.buildConstraintViolationWithTemplate("Inventory exceeds the maximum allowed (" + max + ").")

@@ -69,9 +69,7 @@ public class AddProductController {
             theModel.addAttribute("assparts",product2.getParts());
             return "productForm";
         }
- //       theModel.addAttribute("assparts", assparts);
- //       this.product=product;
-//        product.getParts().addAll(assparts);
+
         else {
             ProductService repo = context.getBean(ProductServiceImpl.class);
 
@@ -81,10 +79,10 @@ public class AddProductController {
 
                 int delta = product.getInv() - product2.getInv();
 
-                // Only reduce part inventory when product inventory INCREASES
+                // Only reduce part inventory when product inventory increase
                 if (delta > 0) {
 
-                    // 1) validate first: parts cannot drop below minInv
+                    // validate first, parts cannot drop below minInv
                     for (Part p : product2.getParts()) {
                         int newInv = p.getInv() - delta;
 
@@ -98,7 +96,7 @@ public class AddProductController {
                         }
                     }
 
-                    // 2) if error, reload form data and return to productForm
+                    // if error, reload form data and return to productForm
                     if (bindingResult.hasErrors()) {
                         theModel.addAttribute("parts", partService.findAll());
 
@@ -114,7 +112,7 @@ public class AddProductController {
                         return "productForm";
                     }
 
-                    // 3) safe: apply the decrease and save
+                    //apply the decrease and save
                     for (Part p : product2.getParts()) {
                         p.setInv(p.getInv() - delta);
                         partService1.save(p);
