@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.example.demo.validators.ValidInvRange;
+
 /**
  *
  *
@@ -16,6 +18,7 @@ import java.util.Set;
  */
 @Entity
 @ValidDeletePart
+@ValidInvRange
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="part_type",discriminatorType = DiscriminatorType.INTEGER)
 @Table(name="Parts")
@@ -28,6 +31,12 @@ public abstract class Part implements Serializable {
     double price;
     @Min(value = 0, message = "Inventory value must be positive")
     int inv;
+
+    // max/min values
+    @Min(value = 0, message = "Min inventory value must be positive")
+    int minInv;
+    @Min(value = 0, message = "Max inventory value must be positive")
+    int maxInv;
 
     @ManyToMany
     @JoinTable(name="product_part", joinColumns = @JoinColumn(name="part_id"),
@@ -89,6 +98,20 @@ public abstract class Part implements Serializable {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
+    public int getMaxInv() {
+        return maxInv;
+    }
+    public void setMaxInv(int maxInv) {
+        this.maxInv = maxInv;
+    }
+    public int getMinInv() {
+        return minInv;
+    }
+    public void setMinInv(int minInv) {
+        this.minInv = minInv;
+    }
+
 
     public String toString(){
         return this.name;

@@ -39,3 +39,20 @@ products, will put user into a success page
 if product was bought if not a failure page.
 (lines 177-193).
 Added new Failure/Success.html pages!
+
+### Part-G
+Added  additional fields to the part entity for 
+maximum and minimum inventory in part.java
+(lines 32-36 & 99-110).
+
+Added min/max sample inventory in BootStrapData.java
+(lines 80-100)
+Added min/max inputs to forms both
+inhouse/outhouse forms.
+
+Renamed the DB file to /computer-db-v(number).
+
+Created files ValidInvRange.java and InvRangeValidator.java
+to make a custom validation rules for min/max inventory.
+Added "@ValidInvRange" in part.java (line 21)
+

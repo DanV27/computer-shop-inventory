@@ -43,7 +43,8 @@ public class ProductServiceImpl implements ProductService{
         }
         else {
             // we didn't find the product id
-            throw new RuntimeException("Did not find part id - " + theId);
+            throw new RuntimeException("Did not find product id - " + theId);
+
         }
 
         return theProduct;

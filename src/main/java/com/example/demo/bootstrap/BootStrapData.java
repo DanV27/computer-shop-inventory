@@ -83,6 +83,9 @@ public class BootStrapData implements CommandLineRunner {
         p.setPrice(price);
         p.setInv(inv);
         p.setPartId(partId);
+        //part g
+        p.setMinInv(1);
+        p.setMaxInv(200);
         return p;
     }
 
@@ -92,6 +95,9 @@ public class BootStrapData implements CommandLineRunner {
         p.setPrice(price);
         p.setInv(inv);
         p.setCompanyName(company);
+        //part g
+        p.setMinInv(1);
+        p.setMaxInv(200);
         return p;
     }
     private void loadSampleProducts() {
