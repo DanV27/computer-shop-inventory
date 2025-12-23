@@ -63,3 +63,7 @@ InvRangeValidator (lines 11-47)
 Product inventory validation against part minimums
 in productForm.html(lines30-51 )
 and AddProductController.java(Lines 75-127)
+
+### Part-I 
+Added two new Test to PartTest.java and its validator for max/min.
+(Lines 10-17, 35-49, 180-220).
