@@ -36,5 +36,17 @@ Built to demonstrate backend validation, persistence, testing, and a clean MVC a
 ## Running the App
 1. Clone the repository  
 2. Run the Spring Boot application  
-3. Open:
+3. Open: http://localhost:8080/mainscreen
 
+
+---
+
+## Screenshot
+![Main Screen](screenshots/mainscreen.png)
+
+---
+
+## Author
+**Daniel Valenzuela**  
+Aspiring Software Engineer  
+GitHub: https://github.com/DanV27
